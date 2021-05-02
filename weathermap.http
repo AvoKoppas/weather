@@ -1,0 +1,4 @@
+GET http://api.openweathermap.org/data/2.5/weather?q=oslo&units=metric&appid=acd7ef3aa9e680f9efd7c9942797034d
+Accept: application/json}
+
+###

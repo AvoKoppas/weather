@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+
+</head>
+<body>
+<div>
+    <h3>Hetke ilm</h3>
+</div>
+<input id="city" placeholder="city">
+<button id="getWeatherButton"> Too ilmainfo</button>
+<p id="weather"></p>
+</p>
+<script>
+    let city = document.getElementById("city");
+    let getWeatherButton = document.getElementById("getWeatherButton");
+    getWeatherButton.onclick = function () {
+        let url = "http://api.openweathermap.org/data/2.5/weather?q=" + city.value + "&units=metric&" +
+            "appid=acd7ef3aa9e680f9efd7c9942797034d"
+        let requestObject = {
+            'city': city.value
+        }
+        let configuration = {
+            method: 'GET'
+        }
+        fetch(url, configuration)
+            .then(response => response.text())
+            .then(function (response) {
+                    let s = response;
+                    let obj = JSON.parse(s)
+                    document.getElementById("weather").innerHTML =
+                        "Temperatuur on " + obj.main.temp +
+                        " C. Tuul puhub kiirusega " + obj.wind.speed + "m/s suunast " +
+                        obj.wind.deg;
+                }
+            )
+
+    }
+</script>
+</body>
+</html>
