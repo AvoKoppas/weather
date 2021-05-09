@@ -12,20 +12,13 @@ public class WeatherRepository {
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
-    public String getWeatherInfo(String cityName) {
-        String sql = "INSERT INTO weather_data (temperature,wind_speed, wind_direction) " +
-                " WHERE city = :name";
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("name", cityName);
-        return jdbcTemplate.queryForObject(sql, paramMap, String.class);
-    }
-
-    public void addWeatherData(double temperature, double windSpeed,
-                               String windDirection) {
-        String sql = "INSERT INTO weather_data (temperature, wind_speed, " +
+    public void addWeatherInfo(String city, double temperature, double windSpeed,
+                               double windDirection) {
+        String sql = "INSERT INTO weather_data (city, temperature, wind_speed, " +
                 "wind_direction) " +
-                "VALUES (:temperature, :windSpeed, :windDirection)";
+                "VALUES (:city, :temperature, :windSpeed, :windDirection)";
         Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("city", city);
         paramMap.put("temperature", temperature);
         paramMap.put("windSpeed", windSpeed);
         paramMap.put("windDirection", windDirection);

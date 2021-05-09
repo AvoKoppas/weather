@@ -12,12 +12,10 @@ public class WeatherService {
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
 
-    public void getWeatherInfo(String cityName) {
-        weatherRepository.getWeatherInfo(cityName);
-    }
 
-    public void addWeatherInfo(double temperature,
-                               double windSpeed, String windDirection) {
-        weatherRepository.addWeatherData(temperature, windSpeed, windDirection);
+    // See meetod peaks lisama weather_data tabelisse internetist saadud ilmainfo, kuid mingil põhjusel ei leia
+    public void addToTable(String city, double temperature,
+                           double windSpeed, double windDirection) {
+        weatherRepository.addWeatherInfo(city, temperature, windSpeed, windDirection);
     }
 }

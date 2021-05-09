@@ -9,35 +9,40 @@
 <div>
     <h3>Hetke ilm</h3>
 </div>
-<input id="city" placeholder="city">
-<button id="getWeatherButton"> Too ilmainfo</button>
+<input id="city" placeholder="Linn">
+<button id="getWeatherButton"> Vaata ilma</button>
 <p id="weather"></p>
+<button id="save" placeholder="Salvesta ilmainfo">Salvesta ilmainfo</button>
 </p>
 <script>
     let city = document.getElementById("city");
     let getWeatherButton = document.getElementById("getWeatherButton");
+    let saveButton = document.getElementById("save")
+
+    //Ilmainfo hankimine
     getWeatherButton.onclick = function () {
         let url = "http://api.openweathermap.org/data/2.5/weather?q=" + city.value + "&units=metric&" +
             "appid=acd7ef3aa9e680f9efd7c9942797034d"
+        //   let url2 = "http://localhost:8080/addWeatherInfo/" + city.value + "/" + obj.main.temp
         let requestObject = {
             'city': city.value
         }
+
         let configuration = {
             method: 'GET'
         }
         fetch(url, configuration)
             .then(response => response.text())
             .then(function (response) {
-                    let s = response;
-                    let obj = JSON.parse(s)
-                    document.getElementById("weather").innerHTML =
-                        "Temperatuur on " + obj.main.temp +
-                        " C. Tuul puhub kiirusega " + obj.wind.speed + "m/s suunast " +
-                        obj.wind.deg;
-                }
-            )
-
+                let s = response;
+                let obj = JSON.parse(s)
+                document.getElementById("weather").innerHTML =
+                    "Linnas nimega " + city.value + " on temperatuur " + obj.main.temp +
+                    " C. Tuul puhub kiirusega " + obj.wind.speed + "m/s suunast " +
+                    obj.wind.deg;
+            })
     }
+
 </script>
 </body>
 </html>

@@ -1,0 +1,26 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="2020-05-05 Game" author="Avo Koppas">
+        <createTable tableName="weather_data">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="city" type="text"/>
+            <column name="temperature" type="numeric"/>
+            <column name="wind_speed" type="numeric"/>
+            <column name="wind_direction" type="int"/>
+        </createTable>
+        <!--        <createTable tableName="prediction">-->
+        <!--            <column name="id" type="int" autoIncrement="true">-->
+        <!--            </column>-->
+        <!--            <column name="game_id" type="int"/>-->
+        <!--            <column name="home" type="int"/>-->
+        <!--            <column name="away" type="int"/>-->
+        <!--        </createTable>-->
+    </changeSet>
+
+</databaseChangeLog>
